@@ -2,3 +2,5 @@ nltm_1.4.2.tar.gz
 *.o
 *.so
 *~
+man
+nltm.Rcheck
