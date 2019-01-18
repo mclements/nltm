@@ -7,8 +7,8 @@ nltm <- function(formula1=formula(data), formula2=formula(data),
                             "GFM","PHPO"),
                  model=FALSE, x=FALSE, y=FALSE, verbose=FALSE, ...)
 {
-  if(sys.parent()==0)
-    cat(gettextf("Authors: G. Garibotti, A. Tsodikov\n"))
+  ## if(sys.parent()==0)
+  ##   cat(gettextf("Authors: G. Garibotti, A. Tsodikov\n"))
   if(!nlt.model %in% eval(formals()[["nlt.model"]]))
     stop(gettextf("nlt.model should be one of %s",
                   paste(dQuote(eval(formals()[["nlt.model"]])),collapse=", ")),
