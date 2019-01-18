@@ -340,8 +340,9 @@ void der1ThetonhDiag(vector<vector<double> > &pred, int *rr, int *dd,
     for(j=0; j<rr[nt-1]; j++){
       aux=ThetonCure_h(pred[i], ss[nt-2], status[i], model);
       aa[nt-2]+=aux;
-      printModelFunction("ThetonCure_h", pred[i], ss[nt-2], 
-			 status[i], aux, aa); 
+      if (verbose)
+	printModelFunction("ThetonCure_h", pred[i], ss[nt-2], 
+			   status[i], aux, aa); 
       // aa is passed just to put something
       i--;
     }     
@@ -349,8 +350,9 @@ void der1ThetonhDiag(vector<vector<double> > &pred, int *rr, int *dd,
     for(j=0; j<rr[nt-1]; j++){
       aux=Theton_h(pred[i], ss[nt-1], status[i], model);
       aa[nt-1]+=aux;
-      printModelFunction("Theton_h", pred[i], ss[nt-1], status[i],
-			 aux, aa);
+      if (verbose)
+	printModelFunction("Theton_h", pred[i], ss[nt-1], status[i],
+			   aux, aa);
       i--;
     }     
   }
@@ -363,8 +365,9 @@ void der1ThetonhDiag(vector<vector<double> > &pred, int *rr, int *dd,
     for(j=0; j<rr[k]; j++){
       aux=Theton_h(pred[i], ss[k], status[i], model);
       aa[k]+=aux;
-      printModelFunction("Theton_h", pred[i], ss[k], status[i],
-			 aux, aa);
+      if (verbose)
+	printModelFunction("Theton_h", pred[i], ss[k], status[i],
+			   aux, aa);
       i--;
     }    
   }
