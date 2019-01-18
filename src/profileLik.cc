@@ -205,7 +205,7 @@ void profileLik(double *beta, double *x1, double *x2, int *status, int *dd,
   if(*npred>1 && *nvar2>0)
     xx2=dmat(x2, nn, *nvar2);
 
-  if(verbose){
+  if(*verbose){
     Rcout<<"nn: "<<nn<<" nvar1: "<<*nvar1<<" nvar2: "<<*nvar2<<endl;
     Rcout<<"beta "<<nbeta<<endl;
     printDVector(beta, nbeta);
@@ -236,19 +236,19 @@ void profileLik(double *beta, double *x1, double *x2, int *status, int *dd,
   
   fitSurvival(status, dd, rr, pred, model, *cure, *tol, s0, nt, *verbose);
 
-  if(verbose){
+  if(*verbose){
     Rcout<<"s0 ";
     printDVector(s0, nt);
   }
   
   *plik=likelihood(status, dd, rr, model, *cure, s0, pred, nt);
     
-  if(verbose)
+  if(*verbose)
     Rcout<<"plik: "<<*plik<<endl;
 
   *plik = !R_FINITE(*plik) ? -VERYBIG*(1+runif(0.0,1.0)*0.1) : *plik;
 
-  if(verbose)
+  if(*verbose)
     Rcout<<"plik: "<<*plik<<endl;
 }
 }
