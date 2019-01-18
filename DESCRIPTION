@@ -1,7 +1,7 @@
 Package: nltm
-Version: 1.4.1
-Date: 2009-02-10
-Title: Non-linear Transformation Models
+Version: 1.4.2
+Date: 2019-01-17
+Title: Non-Linear Transformation Models
 Author: Gilda Garibotti, Alexander Tsodikov
 Maintainer: Gilda Garibotti <garibotti@crub.uncoma.edu.ar>
 Depends: survival, R (>= 2.8.1)
@@ -15,7 +15,7 @@ Description: Fits a non-linear transformation model (nltm) for
         cure, proportional hazard - proportional odds cure, Gamma
         frailty, and proportional hazard - proportional odds.
 License: GPL-2
-URL: http://www.r-project.org
+URL: https://www.R-project.org
 LazyLoad: No
 LazyData: No
 Packaged: 2010-05-07 08:04:50 UTC; ripley
