@@ -581,7 +581,7 @@ void informationMatrix(double *beta, double *x1, double *x2, int *status,
   model=nmodel(*survModel);
   nbeta=(*nvar1)+(*nvar2)+(*cure);
 
-  if(verbose){
+  if(*verbose){
     Rcout<<"information matrix"<<endl;
     Rcout<<"nn: "<<nn<<" nvar1: "<<*nvar1<<" nvar2: "<<*nvar2<<endl;
     Rcout<<"beta "<<nbeta<<endl;
@@ -600,7 +600,7 @@ void informationMatrix(double *beta, double *x1, double *x2, int *status,
   ss[0]=s0[0];
   for(j=1; j<nt; j++)
     ss[j]=ss[j-1]*s0[j];
-  if(verbose){
+  if(*verbose){
     Rcout<<"pred"<<endl;
     printDM(pred);
     Rcout<<"s0"<<endl;
@@ -610,7 +610,7 @@ void informationMatrix(double *beta, double *x1, double *x2, int *status,
    // Partial second derivative of likelihood with respect to beta
   der2likBeta(xx1, xx2, pred, rr, status, ss, model, *cure, *nvar1, *nvar2, 
 	      infMat, *verbose);
-  if(verbose){
+  if(*verbose){
     Rcout<<"der2likbeta start"<<endl;
     Rcout<<"d2lbeta <- ";
     printDMatrixRformat(infMat, nbeta, nbeta);
@@ -622,7 +622,7 @@ void informationMatrix(double *beta, double *x1, double *x2, int *status,
     d2likbh[i].resize(nbeta);
   der2likBetah(xx1, xx2, *nvar1, *nvar2, pred, rr, status, ss, model, *cure, 
 	       d2likbh, *verbose);
-  if(verbose){
+  if(*verbose){
     Rcout<<"d2lbetah <- ";
     printDMRformat(d2likbh);
   }
@@ -635,7 +635,7 @@ void informationMatrix(double *beta, double *x1, double *x2, int *status,
   der1ThetonhDiag(pred, rr, dd, status, s0, ss, model, *cure, aa, diag, 
 		  *verbose);
   
-  if(verbose){
+  if(*verbose){
     Rcout<<"aa"<<endl;
     printDV(aa);
     Rcout<<"diag"<<endl;
@@ -647,7 +647,7 @@ void informationMatrix(double *beta, double *x1, double *x2, int *status,
   for(i=0; i<nh; i++)
     d1hb[i].resize(nbeta);
   der1Hbeta(diag, aa, d2likbh, d1hb);
-  if(verbose){
+  if(*verbose){
     Rcout<<"der1Hbeta <- ";
     printDMRformat(d1hb);
   }
@@ -658,7 +658,7 @@ void informationMatrix(double *beta, double *x1, double *x2, int *status,
   for(i=0; i<nbeta; i++)
     auxMat[i].resize(nbeta);
   term23(d1hb, d2likbh, auxMat);
-  if(verbose){
+  if(*verbose){
     Rcout<<"term23 <- ";
    printDMRformat(auxMat);
   }
@@ -671,7 +671,7 @@ void informationMatrix(double *beta, double *x1, double *x2, int *status,
   // derivative of likelihood with respet to h times first derivative
   // of h(beta) with respect to beta
   term4(aa, diag, d1hb, auxMat);
-  if(verbose){
+  if(*verbose){
     Rcout<<"term4 <- ";
     printDMRformat(auxMat);
   }
@@ -681,7 +681,7 @@ void informationMatrix(double *beta, double *x1, double *x2, int *status,
       infMat[i][j]*=(-1);
     }
 
-  if(verbose){
+  if(*verbose){
     Rcout<<"infMat <- ";
     printDMatrixRformat(infMat, nbeta, nbeta);
   }
