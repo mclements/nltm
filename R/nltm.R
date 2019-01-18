@@ -15,7 +15,7 @@ nltm <- function(formula1=formula(data), formula2=formula(data),
          domain=NA)
 
   call <- match.call()
-  m <- match.call(expand=FALSE)
+  m <- match.call(expand.dots=FALSE)
   # this is necessary because otherwise eval(m, parent.frame()) doesn't work
   names(m)[names(m)=="formula1"] <- "formula"  
   temp <- c("","formula","data","subset","na.action")
@@ -48,7 +48,7 @@ nltm <- function(formula1=formula(data), formula2=formula(data),
       cat(gettextf(paste("Model", nlt.model, sep=" ")))
       cat(gettextf(" has only one predictor however there are two formulas,\nformula2 will not be used.\n\n"))
     }else{
-      m <- match.call(expand=FALSE)
+      m <- match.call(expand.dots=FALSE)
       names(m)[names(m)=="formula2"] <- "formula"  
       temp <- c("","formula","data","subset","na.action")
       m <- m[match(temp, names(m), nomatch=0)]
@@ -83,12 +83,7 @@ nltm <- function(formula1=formula(data), formula2=formula(data),
   controls <- nltm.control(...)
   if(!missing(control)) controls[names(control)] <- control
   
-  if(verbose!=FALSE){
-    res <- .C("openDebug", verbose)
-    verbose <- TRUE
-  }
   fit <- nltm.fit(X1, X2, Y, nlt.model, init, controls, verbose)
-  if(verbose==TRUE) res <- .C("closeDebug")
 
   if(npred==1){
     fit$formula <- formula(Terms1)
