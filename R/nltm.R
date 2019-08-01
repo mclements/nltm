@@ -8,7 +8,7 @@ nltm <- function(formula1=formula(data), formula2=formula(data),
                  model=FALSE, x=FALSE, y=FALSE, verbose=FALSE, ...)
 {
   ## if(sys.parent()==0)
-  ##   cat(gettextf("Authors: G. Garibotti, A. Tsodikov\n"))
+  ##   message(gettextf("Authors: G. Garibotti, A. Tsodikov"))
   if(!nlt.model %in% eval(formals()[["nlt.model"]]))
     stop(gettextf("nlt.model should be one of %s",
                   paste(dQuote(eval(formals()[["nlt.model"]])),collapse=", ")),
@@ -44,9 +44,9 @@ nltm <- function(formula1=formula(data), formula2=formula(data),
   
   if(!missing(formula2)){
     if(npred==1){
-      cat(gettextf("\nWarning message:\n"))
-      cat(gettextf(paste("Model", nlt.model, sep=" ")))
-      cat(gettextf(" has only one predictor however there are two formulas,\nformula2 will not be used.\n\n"))
+      message(gettextf("\nWarning message:"))
+      message(gettextf(paste("Model", nlt.model, sep=" ")), appendLF=FALSE)
+      message(gettextf(" has only one predictor however there are two formulas,\nformula2 will not be used.\n"))
     }else{
       m <- match.call(expand.dots=FALSE)
       names(m)[names(m)=="formula2"] <- "formula"  
