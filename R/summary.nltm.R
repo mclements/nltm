@@ -51,8 +51,8 @@ print.summary.nltm <- function(x, digits = max(options()$digits - 4, 3), ...)
   ## message(gettextf("Authors: G. Garibotti, A. Tsodikov"))
   if(!is.null(x$call)) {
     message("Call:")
-    dput(x$call)
-    message("")
+    message(deparse(x$call))
+    message()
   }
 
   if(!is.null(x$convergence)){
@@ -96,7 +96,7 @@ print.summary.nltm <- function(x, digits = max(options()$digits - 4, 3), ...)
         prmatrix(x$coef)
       }
       if(!is.null(x$conf.int)) {
-        message("")
+        message()
         prmatrix(x$conf.int)
       }
     }else{
@@ -111,7 +111,7 @@ print.summary.nltm <- function(x, digits = max(options()$digits - 4, 3), ...)
           prmatrix(matrix(x$coef[ind1,],nrow=length(ind1)),
                    rowlab=rownames(x$coef)[ind1],collab=colnames(x$coef))
         if(!is.null(x$conf.int[ind1,])) {
-          message("")
+          message()
           prmatrix(matrix(x$conf.int[ind1,],nrow=length(ind1)),
                    rowlab=rownames(x$conf.int)[ind1],
                    collab=colnames(x$conf.int))
@@ -124,18 +124,18 @@ print.summary.nltm <- function(x, digits = max(options()$digits - 4, 3), ...)
           prmatrix(matrix(x$coef[ind1,],nrow=length(ind1)),
                    rowlab=rownames(x$coef)[ind1],collab=colnames(x$coef))
         if(!is.null(x$conf.int[ind1,])) {
-          message("")
+          message()
           prmatrix(matrix(x$conf.int[ind1,],nrow=length(ind1)),
                    rowlab=rownames(x$conf.int)[ind1],
                    collab=colnames(x$conf.int))
         }
       }
     }
-    message("")
+    message()
     message("Likelihood ratio test=", format(round(x$logtest["test"], 2)),
         " on ", x$logtest["df"], " df, p=", format(x$logtest["pvalue"]),
         sep="")
-    message("")
+    message()
     
     omit <- x$na.action
     if(length(omit))

@@ -1,11 +1,11 @@
 print.nltm <- function(x, digits=max(options()$digits - 4, 3), ...)
 {
-  message(gettextf("Authors: G. Garibotti, A. Tsodikov"))
+  ## message(gettextf("Authors: G. Garibotti, A. Tsodikov"))
 
   if(!is.null(cl<- x$call)) {
     message("Call:")
-    dput(cl)
-    message("")
+    message(deparse(cl))
+    message()
   }
 
   savedig <- options(digits = digits)
@@ -60,7 +60,7 @@ print.nltm <- function(x, digits=max(options()$digits - 4, 3), ...)
                           c("coef","exp(coef)","se(coef)","z","p"))
     
     if(x$npred==1){
-      message("")
+      message()
       prmatrix(tmp)
     }else{
       ind1 <- numeric()
@@ -83,7 +83,7 @@ print.nltm <- function(x, digits=max(options()$digits - 4, 3), ...)
     logtest <- -2 * (x$loglik[1] - x$loglik[2])
     if (is.null(x$df)) df <- sum(!is.na(coef))
     else  df <- round(sum(x$df),2)
-    message("")
+    message()
     message("Likelihood ratio test=", format(round(logtest, digits)), " on ",
         df, " df,", " p=", format(1 - pchisq(logtest, df)),  sep="")
     omit <- x$na.action
